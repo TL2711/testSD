@@ -1,0 +1,13 @@
+googletrans==4.0.0-rc1
+pathlib==1.0.1
+tqdm==4.62.0
+torch==1.11.0
+pandas
+numpy
+accelerate
+Werkzeug==2.2.2
+diffusers==0.16.1
+transformers==4.29.2
+matplotlib
+opencv-python
+Flask
