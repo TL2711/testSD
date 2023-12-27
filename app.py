@@ -25,7 +25,7 @@ class CFG:
         generator = torch.Generator(device).manual_seed(seed)
     
     image_gen_steps = 35
-    image_gen_model_id = "CompVis/stable-diffusion-v1-4"
+    image_gen_model_id = "runwayml/stable-diffusion-v1-5"
     image_gen_size = (500,500)
     image_gen_guidance_scale = 9
     prompt_gen_model_id = "gpt3"
