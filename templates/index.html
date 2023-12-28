@@ -13,7 +13,7 @@
 
 <body class="d-flex flex-column align-items-center" style="min-height: 100vh;">
     <div class="container text-center">
-        <h1 class="mt-5 font-monospace fw-bold">Text to Image</h1>
+        <h1 class="mt-3 font-monospace fw-bold">Text to Image</h1>
         <div class="input-container input-group mb-3">
             <input type="text" id="promptInput" class="form-control" placeholder="Enter text prompt">
         </div>
@@ -28,7 +28,6 @@
         </div>
 
         <button onclick="generateImage()" class="btn btn-primary">Generate Image</button>
-        <button onclick="saveImage()" class="btn btn-danger" style="margin-left:20px">Save Image</button>
         
         <div class="spinner mt-5" id="spinner" style="display: none;">
             <img src="../static/loading.gif" alt="loading ..." class="img-fluid img-200">
@@ -91,27 +90,6 @@
             }
         }
 
-        function saveImage() {
-                var imageSrc = document.querySelector('.result img').src;
-        
-                var request = new XMLHttpRequest();
-                request.open('GET', '/download/' + encodeURIComponent(imageSrc), true);
-                request.responseType = 'blob';
-        
-                request.onload = function () {
-                    var blob = new Blob([request.response], { type: 'image/png' });
-                    var link = document.createElement('a');
-                    link.href = window.URL.createObjectURL(blob);
-                    
-                    link.download = 'generated_image.png';
-        
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                };
-        
-                request.send();
-        }
     </script>
 </body>
 </html>
