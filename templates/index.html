@@ -92,17 +92,25 @@
         }
 
         function saveImage() {
-            var imageSrc = document.querySelector('.result img').src;
-            var timestamp = new Date().getTime();
-            
-            var link = document.createElement('a');
-            link.href = imageSrc;
-            link.download = 'generated_image_' + timestamp + '.png';
+                var imageSrc = document.querySelector('.result img').src;
         
-            document.body.appendChild(link);
-            link.click();
+                var request = new XMLHttpRequest();
+                request.open('GET', '/download/' + encodeURIComponent(imageSrc), true);
+                request.responseType = 'blob';
         
-            document.body.removeChild(link);
+                request.onload = function () {
+                    var blob = new Blob([request.response], { type: 'image/png' });
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    
+                    link.download = 'generated_image.png';
+        
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                };
+        
+                request.send();
         }
     </script>
 </body>
