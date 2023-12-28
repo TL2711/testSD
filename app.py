@@ -4,7 +4,7 @@ import torch
 from diffusers import StableDiffusionPipeline
 from transformers import pipeline, set_seed
 import matplotlib.pyplot as plt 
-from flask import jsonify, Flask, request, render_template, send_file, send_from_directory
+from flask import jsonify, Flask, request, render_template
 import os
 import time
 
@@ -77,17 +77,6 @@ def generate_unique_filename():
     timestamp = str(int(time.time(  )))
     filename = f"image_{timestamp}.jpg"
     return filename
-
-def save_image(image):
-    save_folder = 'static'
-    os.makedirs(save_folder, exist_ok=True)
-    filename = generate_unique_filename()
-
-    image_path = os.path.join(save_folder, filename)
-    image.save(image_path)
-    print('image saved at this path ', image_path)
-
-    return image_path
     
 @app.route('/download/<filename>')
 def download_image(filename):
