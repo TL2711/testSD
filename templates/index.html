@@ -11,15 +11,25 @@
     </style>
 </head>
 
-<body class="d-flex flex-column align-items-center bg-dark" style="min-height: 100vh;">
+<body class="d-flex flex-column align-items-center" style="min-height: 100vh;">
     <div class="container text-center">
-        <h1 class="mt-5 text-white font-monospace fw-bold">Text to Image</h1>
+        <h1 class="mt-5 font-monospace fw-bold">Text to Image</h1>
         <div class="input-container input-group mb-3">
             <input type="text" id="promptInput" class="form-control" placeholder="Enter text prompt">
         </div>
 
+        <div class="input-container input-group mb-3">
+            <div class="auth-token-container input-group">
+                <input type="password" id="authTokenInput" class="form-control" placeholder="Hugging Face Token">
+                <span class="toggle-visibility input-group-text" onclick="toggleAuthVisibility()">
+                    <img src="../static/view.png" alt="">
+                </span>
+            </div>
+        </div>
+
         <button onclick="generateImage()" class="btn btn-primary">Generate Image</button>
         <button onclick="saveImage()" class="btn btn-danger" style="margin-left:20px">Save Image</button>
+        
         <div class="spinner mt-5" id="spinner" style="display: none;">
             <img src="../static/loading.gif" alt="loading ..." class="img-fluid img-200">
         </div>
