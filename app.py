@@ -4,7 +4,7 @@ import torch
 from diffusers import StableDiffusionPipeline
 from transformers import pipeline, set_seed
 import matplotlib.pyplot as plt 
-from flask import jsonify, Flask, request, render_template, send_file
+from flask import jsonify, Flask, request, render_template, send_file, send_from_directory
 import os
 import time
 
@@ -91,7 +91,7 @@ def save_image(image):
     
 @app.route('/download/<filename>')
 def download_image(filename):
-    return send_file(filename, as_attachment=True)
+    return send_from_directory('static', filename, as_attachment=True)
 
 if __name__ == "__main__":
     app.run(debug=True)
