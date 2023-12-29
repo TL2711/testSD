@@ -77,10 +77,6 @@ def generate_unique_filename():
     timestamp = str(int(time.time(  )))
     filename = f"image_{timestamp}.jpg"
     return filename
-    
-@app.route('/download/<filename>')
-def download_image(filename):
-    return send_from_directory('static', filename, as_attachment=True)
 
 if __name__ == "__main__":
     app.run(debug=True)
