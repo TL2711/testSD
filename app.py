@@ -25,7 +25,7 @@ class CFG:
         generator = torch.Generator(device).manual_seed(seed)
     
     image_gen_steps = 35
-    image_gen_model_id = "runwayml/stable-diffusion-v1-5"
+    image_gen_model_id = "stabilityai/stable-diffusion-2"
     image_gen_size = (500,500)
     image_gen_guidance_scale = 9
     prompt_gen_model_id = "gpt3"
@@ -77,6 +77,17 @@ def generate_unique_filename():
     timestamp = str(int(time.time(  )))
     filename = f"image_{timestamp}.jpg"
     return filename
+
+def save_image(image):
+    save_folder = 'static'
+    os.makedirs(save_folder, exist_ok=True)
+    filename = generate_unique_filename()
+
+    image_path = os.path.join(save_folder, filename)
+    image.save(image_path)
+    print('image saved at this path ', image_path)
+
+    return image_path
 
 if __name__ == "__main__":
     app.run(debug=True)
